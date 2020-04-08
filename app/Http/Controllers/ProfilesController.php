@@ -30,6 +30,8 @@ class ProfilesController extends Controller
             'image' => '',
         ]);
 
+        $imagePath = NULL;
+
         if (request('image')) {
             $imagePath = request('image')->store('profile', 'public');
 
