@@ -5,17 +5,22 @@
     <div class="row">
 
         <div class="col-3 p-5">
-            <img src="https://pbs.twimg.com/profile_images/782132102368223232/yJxwuI1g_400x400.jpg"
+            <img src="/storage/{{ $user->profile->image }}"
                  alt=""
-                 class="rounded-circle"
+                 class="rounded-circle w-100"
                  style="max-height: 150px">
         </div>
 
         <div class="col-9 pt-5">
             <div class="d-flex justify-content-between align-items-baseline">
                 <h1>{{ $user->username }}</h1>
+                @can('update', $user->profile)
                 <a href="/p/create">Add New Post</a>
+                @endcan
             </div>
+            @can('update', $user->profile)
+            <a href="/profile/{{ $user->id }}/edit">Edit Profile</a>
+            @endcan
             <div class="d-flex">
                 <div class="pr-5"><strong>{{ $user->posts->count() }}</strong> posts</div>
                 <div class="pr-5"><strong>23k</strong> followers</div>
@@ -32,7 +37,9 @@
     <div class="row pt-4">
         @foreach($user->posts as $post)
         <div class="col-4 pb-4">
-            <img class="w-100" src="/storage/{{ $post->image }}" alt="">
+            <a href="/p/{{ $post->id }}" class="">
+                <img class="w-100" src="/storage/{{ $post->image }}" alt="">
+            </a>
         </div>
         @endforeach
     </div>

@@ -4,6 +4,7 @@
 <div class="container">
     <form action="/p" enctype="multipart/form-data" method="post">
         @csrf
+
         <div class="row">
             <div class="col-8 offset-2">
 
@@ -45,7 +46,7 @@
         </div>
 
         
-    </form>
+    </form>   
 </div>
 @endsection
 
