@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
@@ -23,6 +20,14 @@ Auth::routes();
 Route::post('/follow/{user}', 'FollowsController@store')->name('follow');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
+Route::get('/', 'PostsController@index');
 
 Route::get('/p/create', 'PostsController@create')->name('posts.create');
 Route::post('/p', 'PostsController@store')->name('posts.store');
