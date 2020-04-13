@@ -25,13 +25,20 @@ export default {
 
   methods: {
     followUser() {
-      axios.post("/follow/" + this.userId).then(response => {
-        if (response.data.attached.includes(parseInt(this.userId))) {
-          this.status = true;
-        } else {
-          this.status = false;
-        }
-      });
+      axios
+        .post("/follow/" + this.userId)
+        .then(response => {
+          if (response.data.attached.includes(parseInt(this.userId))) {
+            this.status = true;
+          } else {
+            this.status = false;
+          }
+        })
+        .catch(errors => {
+          if (errors.response.status === 401) {
+            window.location = "/login/";
+          }
+        });
     }
   }
 };

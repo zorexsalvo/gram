@@ -1939,6 +1939,10 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           _this.status = false;
         }
+      })["catch"](function (errors) {
+        if (errors.response.status === 401) {
+          window.location = "/login/";
+        }
       });
     }
   }
